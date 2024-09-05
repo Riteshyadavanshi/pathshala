@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model Course {
+  id             String        @id @map("_id")
+  name           String
+  instructor     String
+  description    String
+  enrollmentStatus EnrollmentStatus
+  price              Int
+  thumbnail      String
+  duration       String
+  schedule       String
+  location       String
+  prerequisites  String[]
+  syllabus       Syllabus[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+model Syllabus {
+  id       String  @id @map("_id")
+  week     Int
+  topic    String
+  content  String
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+enum EnrollmentStatus {
+  OPEN
+  CLOSED
+  IN_PROGRESS
+}
+
+
+model Student{
+    id   String @id @map("_id")
+    name  String 
+    
+}
+
+model EnrollCourse{
+   id  String @id @map("_id")
+    courseId String
+    studentId String
+    createdAt DateTime @default(now())
+    updatedAt  DateTime @updatedAt()
+}
