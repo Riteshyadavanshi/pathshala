@@ -1,6 +1,8 @@
 # pathshala
 it is nextjs project 
 
-#command to run project
--npm install
--npm run dev
+### Command to run the project
+
+```bash
+npm install && npm run dev
+
