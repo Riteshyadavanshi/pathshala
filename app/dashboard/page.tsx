@@ -2,9 +2,14 @@
 
 import { Course } from "@prisma/client"
 import { EnrollCourse } from "./_components/enroll-course-card"
+import { useEffect, useState } from "react"
   type Courses=Course&{status:string}
 const StudentDashboard = () => {
-    const enrollCourses:Courses []=JSON.parse(localStorage.getItem("enrolledCourses")||"[]")
+   const [enrollCourses,setEnrollCourses]=useState<Courses[]>([])
+
+   useEffect(()=>{
+      setEnrollCourses(JSON.parse(localStorage.getItem("enrolledCourses")||"[]"))
+   },[enrollCourses])
     
   return (
     <>

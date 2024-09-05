@@ -41,7 +41,7 @@ export const markCompleted=(courseId:string)=>{
      const courses:Course[]=JSON.parse(localStorage.getItem("enrolledCourses")||"[]")
      if(courses){
       const updatedCourse=courses.map(course=>{
-          if(course.id=courseId){
+          if(course.id==courseId){
               return {...course,status:"completed"}
           }
           return course
