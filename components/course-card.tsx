@@ -22,7 +22,7 @@ export const CourseCard = ({
   instructor  
 }: CourseCardProps) => {
   return (
-    <div className="bg-slate-300 py-2  space-y-2 flex flex-col justify-center items-center rounded-md md:p-4">
+    <div className="bg-slate-300 py-2  space-y-2 flex flex-col justify-center items-center rounded-md md:p-4 p-2">
       <h1 className="text-2xl font-semibold">{name}</h1>
       <div>
         <Image
@@ -40,7 +40,7 @@ export const CourseCard = ({
         <h2 className={cn("text-green-900",enrollmentStatus=="CLOSED"&&"text-red-700")}>{enrollmentStatus}</h2>
         </div>
         <h2>by {" "}{instructor}</h2>
-        <div className="flex justify-between">
+        <div className="flex justify-between space-y-2">
           { enrollmentStatus!="CLOSED" &&<EnrollButton thumbnail={thumbnail} name={name} price={price} enrollmentStatus={enrollmentStatus} instructor={instructor} id={id}/>}
           <RedirectBtn url={`/course/${id}`} label="view details" />
         </div>
